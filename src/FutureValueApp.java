@@ -1,10 +1,13 @@
+// Quincy Yarbrough
+// 7/25/2024
+// Future value app tha returns all calculations made that session in a formatted form
 
 import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class FutureValueApp {
-
+    // linked list used to store the daa
     public static LinkedList<String> values = new LinkedList<>();
 
     public static void main(String[] args) {
@@ -21,12 +24,12 @@ public class FutureValueApp {
             System.out.println();
 
             double futureValue = calculateFutureValue(monthlyInvestment, interestRate, years);
-
+            // added a currency format so instead of 10K it shows the full value
             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
             NumberFormat c = NumberFormat.getCompactNumberInstance();
             NumberFormat p = NumberFormat.getPercentInstance();
             p.setMinimumFractionDigits(1);
-
+            // adding values to linked list
             values.add(currencyFormatter.format(monthlyInvestment));
             values.add(p.format(interestRate / 100));
             values.add(Integer.toString(years));
@@ -41,7 +44,7 @@ public class FutureValueApp {
             System.out.println("Continue? (y/n):");
             choice = sc.nextLine();
             System.out.println();
-
+            // looks for the "n" so it knows when to move on to the end
             if (choice.equalsIgnoreCase("n")) {
                 printResults();
             }
@@ -104,7 +107,7 @@ public class FutureValueApp {
         }
         return futureValue;
     }
-
+    // formatted results for the final output found this format style more to my taste
     public static void printResults() {
         System.out.println("ALL CALCULATIONS");
         System.out.printf("%-15s %-10s %-10s %-15s%n", "Inv/Mo.", "Rate", "Years", "Future Value");
